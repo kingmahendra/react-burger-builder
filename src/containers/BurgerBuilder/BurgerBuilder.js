@@ -47,6 +47,10 @@ class BurgerBuilder extends Component {
             purchasing:false
         })
     }
+    
+    purchaseContinuedHandler = () => {
+        alert('You continued the purchase');
+    }
 
     addIngredientHandler = (type) => {
         console.log(type);
@@ -91,7 +95,11 @@ class BurgerBuilder extends Component {
         return ( 
             <Aux>  
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary ingredients={this.state.ingredients}/>
+                    <OrderSummary 
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseContinued={this.purchaseContinuedHandler}
+                        ingredients={this.state.ingredients}
+                        />
                 </Modal> 
                 <Burger ingredients={this.state.ingredients}/>
                 <BuidControls 
