@@ -14,10 +14,10 @@ const INGREDIENT_COST = {
 class BurgerBuilder extends Component {
     state = {
         ingredients: {
-            meat: 0,
             salad: 0,
+            meat: 0,
+            cheese: 0,
             bacon: 0,
-            cheese: 0
         },
         totalPrice: 4,
         purchasable: false,
@@ -53,7 +53,6 @@ class BurgerBuilder extends Component {
     }
 
     addIngredientHandler = (type) => {
-        console.log(type);
         const oldCount = this.state.ingredients[type];
         const updatedCount = oldCount + 1;
         const updatedIngredients = {
@@ -96,6 +95,7 @@ class BurgerBuilder extends Component {
             <Aux>  
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     <OrderSummary 
+                        price={this.state.totalPrice}
                         purchaseCancelled={this.purchaseCancelHandler}
                         purchaseContinued={this.purchaseContinuedHandler}
                         ingredients={this.state.ingredients}
